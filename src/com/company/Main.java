@@ -45,17 +45,22 @@ public class Main {
         for (char ch : content.toString().toCharArray())
             frequencies.put(ch, frequencies.getOrDefault(ch, 0) + 1);
 
-        int freqValueCount = 0;
+        int freqValueSum = 0;
         System.out.println("\nЧастоты: ");
         for (Map.Entry<Character,Integer> entry : frequencies.entrySet()){
             System.out.println(entry.getKey() + " : " + entry.getValue());
-            freqValueCount += entry.getValue();
+            freqValueSum += entry.getValue();
         }
 
-        double freqArithmeticMean = (double) freqValueCount / frequencies.size();
+        double freqArithmeticMean = (double) freqValueSum / frequencies.size();
 
-        System.out.println("\nСреднее значение частот: " + freqArithmeticMean);
+        System.out.println("\nСреднее значение частоты: " + freqArithmeticMean);
+
         System.out.println("\nСимволы, которые соответствуют условию наиболее близкого значения частоты к среднему значанию: ");
+        for (Map.Entry<Character,Integer> entry : frequencies.entrySet()){
+            if(entry.getValue() == Math.round(freqArithmeticMean))
+                System.out.print(entry.getKey() + "(" + (int) entry.getKey() + ") " );
+        }
     }
 
     public static void main(String[] args) throws IOException {
